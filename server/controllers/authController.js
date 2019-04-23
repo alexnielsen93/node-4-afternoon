@@ -11,11 +11,13 @@ users.map((userObj)=>{
      req.session.user.username = userObj.username
      res.status(200).send(req.session.user)
      found = true
+     console.log('user found')
   }
 
 })
 if (found === false){
   res.status(500).send('Unauthorized.')
+  
 }
 
 
@@ -26,17 +28,18 @@ if (found === false){
     users.push({id, username, password})
     id++
     req.session.user.username = username
-
+    console.log(users)
     res.status(200).send(req.session.user)
   },
 
   signout: (req,res)=>{
     req.session.destroy()
-    req.status(200).send(req.session)
+    res.status(200).send(req.session)
+    console.log(`session destroyed`)
   },
 
   getUser: (req, res)=>{
     res.status(200).send(req.session.user)
-
+    console.log(`got user`)
   },
 }
