@@ -20,6 +20,8 @@ app.use(
   })
 )
 
+app.use(express.static(`${__dirname}/..build`))
+
 app.use(checkForSession)
 app.get('/api/swag', swagController)
 app.post('/api/login', authController.login)
